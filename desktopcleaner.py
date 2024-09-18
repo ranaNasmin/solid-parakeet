@@ -50,7 +50,6 @@ folders = {"images": pathlib.Path(src_folder / 'images'),
            "unknown": pathlib.Path(src_folder / 'Unknown')}
 
 
-# Now a block of code for each format to check whether they are audio, image, video, document or other category
 # write a function to check if the file exist and move accordingly
 def move_file(file, destination_folder):
     # assign the destination variable to check if the file already exists
@@ -75,7 +74,6 @@ def move_file(file, destination_folder):
     else:
         shutil.move(str(file), str(file_destination))
 
-
 # Function to handle file processing. If the file-extension is found in any extension list, then the move_file() is
 # called and arguments file and folder_destination is passed
 def file_extension(file):
@@ -96,7 +94,6 @@ def file_extension(file):
 # First get the current files in the directory
 def get_current_files():
     return set(file for file in src_folder.iterdir() if file.is_file())
-    # return known_files
 
 
 # function to monitor directory for changes
@@ -104,22 +101,15 @@ def monitor_folder(interval=10):
     print("Monitor folder for new files: ")
     # Access new files from the get_current_files()
     known_files = get_current_files()
-    # print(known_files)
     try:
         while True:
             time.sleep(interval)
-            current_files = get_current_files()
-            # get new files by checking the difference between two sets.
-            new_files = known_files - current_files
-            print(new_files)
             for new_file in known_files:
                 print(f"{new_file} is a new_file found")
                 if new_file.is_file():
                     for file in known_files:
                         print(f"New new_file detected {file.name}: ")
                         file_extension(file)
-            known_files = current_files
-
     except FileNotFoundError as e:
         print("file not found")
 
