@@ -1,2 +1,2 @@
 # solid-parakeet
-This repository is about my python automation tools
+This repository is about my python projects
