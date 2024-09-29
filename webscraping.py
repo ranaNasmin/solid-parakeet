@@ -2,7 +2,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import csv
+
 # Function to extract product title
 def product_title(soup):
     title = soup.find('span',class_='VU-ZEz').text
@@ -37,12 +37,10 @@ def product_review (product):
 # The main block of the code
 if __name__ == '__main__':
     # Get the url.
-    url = "https://www.flipkart.com/search?q=ps4&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as" \
-          "=off"
+    url = "https://example.com"
 
     # Header for the url
-    HEADER = ({'UserAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0',
-               'Accept-Language': 'en-US, en;q=0.5'})
+    HEADER = ({'UserAgent':'adcsd'})
 
     # HTTP request
     webpage = requests.get(url, headers=HEADER)
@@ -63,7 +61,7 @@ if __name__ == '__main__':
 
     # Loop for extracting product link from each link
     for link in links_list:
-        new_webpage = requests.get("https://flipkart.com" + link, headers=HEADER)
+        new_webpage = requests.get("https://example.com" + link, headers=HEADER)
         new_soup=BeautifulSoup(new_webpage.content, 'html.parser')
 
         product_dict['title'].append(product_title(new_soup))
@@ -72,10 +70,10 @@ if __name__ == '__main__':
         product_dict['reviews'].append(product_review(new_soup))
 
     # print(product_dict[10])
-    flipkart_df = pd.DataFrame.from_dict(product_dict)
-    flipkart_df['title'] = flipkart_df['title'].replace('', np.nan)
-    flipkart_df = flipkart_df.dropna(subset=['title'])
-    flipkart_df.to_csv("flipkart_data.csv", header = True, index = False, encoding='utf-8-sig', errors='replace')
+    something_df = pd.DataFrame.from_dict(product_dict)
+    something_df['title'] = something_df['title'].replace('', np.nan)
+    something_df = something_df.dropna(subset=['title'])
+    something_df.to_csv("somethingelse_df.csv", header = True, index = False, encoding='utf-8-sig', errors='replace')
 
 
 
