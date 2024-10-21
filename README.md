@@ -15,6 +15,7 @@ google.
      use this to scrape data about products and compare them. but use it responsibly make no one is at disadvantage.
 
 But not only boring projects but also some fun games like hangman and slot machine is included in here
+these are simple script games just for learning purpose don't expect something else please.
 
 i learned to write the games scripts and the basics of python from a youtube channel if you are interested in learning you can also checkout.
 credits:
